@@ -20,4 +20,9 @@ app.get('/',(req,res) =>{
     res.render('index.ejs')
 })
 
+app.get('/cats',(req,res) =>{
+    res.render('allcats.ejs')
+})
+
+
 app.listen(port, host, () => {console.log(`cats projekti toimii ${host + port}  `)});
