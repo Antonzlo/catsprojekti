@@ -24,5 +24,9 @@ app.get('/cats',(req,res) =>{
     res.render('allcats.ejs')
 })
 
+app.get('/genret',(req,res)=>{
+   
+})
+
 
 app.listen(port, host, () => {console.log(`cats projekti toimii ${host + port}  `)});
