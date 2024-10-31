@@ -17,19 +17,6 @@ app.set('view engine', 'ejs');
 
 app.set('views', path.join(__dirname, 'templates'));
 
-// app.get('/cats', (req, res) => {
-//   let query = 'SELECT * FROM cats';
-//   const { category } = req.query;
-
-//   if (category === 'Colours') query = "SELECT * FROM cats WHERE color='white'";
-//   else if (category === 'Size') query = "SELECT * FROM cats WHERE size='medium'";
-//   else if (category === 'Character') query = "SELECT * FROM cats WHERE personality='Calm and affectionate'";
-
-//   db.query(query, (error, results) => {
-//     if (error) return res.status(500).json({ error: error.message });
-//     res.json(results);
-//   });
-// });
 
 
 
