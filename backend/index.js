@@ -1,36 +1,56 @@
-const express = require('express')
+const express = require('express');
 const path = require('path');
 const app = express();
 const cors = require('cors');
 const mysql = require('mysql2');
 
-const db = require('./dbconfig.json');
-const {port, host} = require('./config.json');
+const dbConfig = require('./dbconfig.json');
+const { port, host } = require('./config.json');
 
 app.use(cors());
 app.use(express.json());
-
-app.use(express.urlencoded({ extended: true, }));
+app.use(express.urlencoded({ extended: true }));
 
 app.use('/public', express.static(path.join(__dirname, 'public')));
-app.set('view engine', 'ejs');
-
 app.set('views', path.join(__dirname, 'templates'));
 
+const connection = mysql.createConnection(dbConfig);
 
+connection.connect((err) => {
+  if (err) {
+    console.error('error', err);
+    return;
+  }
+});
 
+app.get('/cats', (req, res) => {
+  const query = 'SELECT * FROM cats';
 
-// app.get('/',(req,res) =>{
-//     res.render('index.ejs')
-// })
+  connection.query(query, (err, results) => {
+    if (err) {
+      console.error('error', err);
+      res.status(500).send('server error');
+      return;
+    }
 
-// app.get('/cats',(req,res) =>{
-//     res.render('allcats.ejs')
-// })
+    res.json(results);
+  });
+});
 
-// app.get('/genret',(req,res)=>{
-   
-// })
+app.get('/colours', (req, res) => {
+    const query = 'SELECT DISTINCT color FROM cats';
+  
+    connection.query(query, (err, results) => {
+      if (err) {
+        console.error('error', err);
+        res.status(500).send('server error');
+        return;
+      }
+  
+      res.json(results);
+    });
+  });
 
-
-app.listen(port, host, () => {console.log(`cats projekti toimii ${host + port}  `)});
+app.listen(port, host, () => {
+  console.log(`cats projekti toimii ${host}:${port}`);
+});

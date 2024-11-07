@@ -8,7 +8,6 @@ const Header = () => {
         document.documentElement.setAttribute('data-theme', theme);
     }, [theme]);
 
-    // Function to toggle theme
     const toggleTheme = () => {
         setTheme(prevTheme => (prevTheme === 'light' ? 'dark' : 'light'));
     };
@@ -19,11 +18,11 @@ const Header = () => {
                 <p>Mewtopia</p>
             </a>
             <nav>
-                <a href="http://localhost:3005/cats">Cats</a>
+                <a href="http://localhost:5173/cats">Cats</a>
                 <a href="Search">Search</a>
                 <img
                     id="themeToggle"
-                    src={theme === 'light' ? '/public/images/moon.png' : '/public/images/sun.png'}
+                    src={theme === 'light' ? '/images/moon.png' : '/images/sun.png'}
                     className="theme-icon"
                     alt="Toggle theme"
                     onClick={toggleTheme}
