@@ -25,7 +25,7 @@ const HomePage = () => {
                 </div>
                 <div className="category">
                     <h3>Size</h3>
-                    <a>Read More</a>
+                    <Link to="/size">Read more</Link>
                 </div>
                 <div className="category">
                     <h3>Character</h3>

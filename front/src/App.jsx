@@ -6,7 +6,9 @@ import ReactDOM from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Cats from './pages/cats';
 import Home from './pages/Home';
+import Size from './pages/Size';
 import Colours from './ColorsPage';
+import SizePage from './SizePage';
 // import AllCats from './AllCats';
 
 // const App = () => {
@@ -28,6 +30,8 @@ export default function App() {
         <Route index element={<Home />} />
         <Route path="cats" element={<Cats />} />
         <Route path="colours" element={<Colours />} />
+        <Route path="size" element={<Size />} />
+
       </Routes>
     </BrowserRouter>
   );
