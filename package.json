@@ -1,5 +1,9 @@
 {
   "dependencies": {
+<<<<<<< HEAD
+    "react-router-dom": "^6.28.0"
+=======
     "cors": "^2.8.5"
+>>>>>>> e93f37628129bd8d4efa3c51b90bca0fab5bb551
   }
 }
