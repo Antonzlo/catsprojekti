@@ -87,3 +87,7 @@ x
     margin-top: 10px;
 }
 
+.links {
+    color: #333333; /* Sets a specific color */
+  text-decoration: none;
+}

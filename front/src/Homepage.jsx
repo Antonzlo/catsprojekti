@@ -17,19 +17,19 @@ const HomePage = () => {
             <section className="categories-section">
                 <div className="category">
                     <h3>All Cats</h3>
-                    <Link to="/cats">Read more</Link>
+                    <Link to="/cats" className='links'>Read more</Link>
                     </div>
                 <div className="category">
                     <h3>Colours</h3>
-                    <Link to="/colours">Read more</Link>
+                    <Link to="/colours" className="links">Read more</Link>
                 </div>
                 <div className="category">
                     <h3>Size</h3>
-                    <Link to="/size">Read more</Link>
+                    <Link to="/size" className="links">Read more</Link>
                 </div>
                 <div className="category">
                     <h3>Character</h3>
-                    <a>Read More</a>
+                    <a className='links'>Read More</a>
                 </div>
             </section>
             
