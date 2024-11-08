@@ -29,6 +29,7 @@ const Colours = () => {
                         <strong>Facts:</strong> {cat.breed_facts} <br /> */} 
                     </li>
                 ))}
+              
             </ul>
         </div>
     );
