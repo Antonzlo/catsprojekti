@@ -8,7 +8,7 @@ const Header = () => {
         document.documentElement.setAttribute('data-theme', theme);
     }, [theme]);
 
-    // Function to toggle theme
+    //toggle theme
     const toggleTheme = () => {
         setTheme(prevTheme => (prevTheme === 'light' ? 'dark' : 'light'));
     };
