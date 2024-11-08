@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './HomePage.css';
 const HomePage = () => {
     return (
@@ -16,19 +17,19 @@ const HomePage = () => {
             <section className="categories-section">
                 <div className="category">
                     <h3>All Cats</h3>
-                    <li>Read More</li>
-                </div>
+                    <Link to="/cats">Read more</Link>
+                    </div>
                 <div className="category">
                     <h3>Colours</h3>
-                    <li>Read More</li>
+                    <Link to="/colours">Read more</Link>
                 </div>
                 <div className="category">
                     <h3>Size</h3>
-                    <li>Read More</li>
+                    <Link to="/size">Read more</Link>
                 </div>
                 <div className="category">
                     <h3>Character</h3>
-                    <li>Read More</li>
+                    <a>Read More</a>
                 </div>
             </section>
             
