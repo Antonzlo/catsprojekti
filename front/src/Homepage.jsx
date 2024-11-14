@@ -33,7 +33,7 @@ const HomePage = () => {
                 <div className="category">
                     <h3>Character</h3>
                     <img src="/public/images/templates.png" alt="aaa" />
-                    <a className='links'>Read More</a>
+                    <Link to="/character" className="links">Read more</Link>
                 </div>
             </section>
             

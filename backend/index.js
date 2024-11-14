@@ -63,6 +63,19 @@ app.get('/colours', (req, res) => {
     });
   });
 
+  app.get('/character', (req, res) => {
+    const query = 'SELECT DISTINCT personality FROM cats';
+    connection.query(query, (err, results) => {
+      if (err) {
+        console.error('Query error:', err);
+        res.status(500).send('Server error');
+        return;
+      }
+      res.json(results);
+    });
+  });
+
+
 app.listen(port, host, () => {
   console.log(`cats projekti toimii ${host}:${port}`);
 });
