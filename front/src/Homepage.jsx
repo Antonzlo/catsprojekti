@@ -17,18 +17,23 @@ const HomePage = () => {
             <section className="categories-section">
                 <div className="category">
                     <h3>All Cats</h3>
+                    <img src="/public/images/cat2.png" alt="aaa" />
                     <Link to="/cats" className='links'>Read more</Link>
                     </div>
                 <div className="category">
                     <h3>Colours</h3>
+                    <img src="/public/images/colours.png" alt="aaa" />
                     <Link to="/colours" className="links">Read more</Link>
                 </div>
                 <div className="category">
                     <h3>Size</h3>
+                    <img src="/public/images/size.png" alt="aaa" />
                     <Link to="/size" className="links">Read more</Link>
                 </div>
                 <div className="category">
                     <h3>Character</h3>
+                    <img src="/public/images/character.png" alt="aaa" />
+
                     <a className='links'>Read More</a>
                 </div>
             </section>
