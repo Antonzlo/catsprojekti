@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import "./pages.css";
 
 const Colours = () => {
     const [cats, setCats] = useState([]);

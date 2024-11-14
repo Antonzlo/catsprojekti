@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import "./pages.css";
 
 const AllCats = () => {
     const [cats, setCats] = useState([]);
@@ -20,17 +21,15 @@ const AllCats = () => {
     return (
         <div>
             <h2>All Cats</h2>
-            <ul>
-            {cats.map(cat => (
-                    <li key={cat.id}>
-                        <strong>Breed:</strong> {cat.breed} <br />
-                        {/* <strong>Color:</strong> {cat.color} <br />
-                        <strong>Personality:</strong> {cat.personality} <br />
-                        <strong>Size:</strong> {cat.size} <br />
-                        <strong>Facts:</strong> {cat.breed_facts} <br /> */}
-                    </li>
+            <div className='allcatsdiv'>
+                {cats.map(cat => (
+                    <div key={cat.id} className="cat-item">
+                        <button className="breed-button">{cat.breed}</button> <br />
+                        <div className="cat-image">Pics</div>
+                        <button className="read-more">Read more</button>
+                    </div>
                 ))}
-            </ul>
+            </div>
         </div>
     );
 };

@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 //bebebe
+import "./pages.css";
+
 const SizePage = () => {
     const [cats, setCats] = useState([]);
 
