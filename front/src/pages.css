@@ -16,8 +16,8 @@
 }
 
 .cat-image {
-    width: 250px;
-    height: 250px;
+    width: 300px;
+    height: 300px;
     margin: 0 auto 10px;
     display: flex;
     align-items: center;
@@ -56,6 +56,18 @@ h2 {
     margin-top: 20px;
 }
 .breed-image{
-    width: 300px;
+    width: 500px;
+    justify-content: center;
+    align-content: center;
+    margin-left:70px;
 }
 
+.cat-details{
+    display: flex; /* Side-by-side layout */
+  gap: 20px; /* Space between image and details */
+  max-width: 800px; /* Optional: Limit the card's width */
+  margin: 0 auto; /* Center the card */
+  background-color: #f9f5e6; /* Optional: Add a background color */
+  padding: 20px; 
+  flex: 1; 
+}
