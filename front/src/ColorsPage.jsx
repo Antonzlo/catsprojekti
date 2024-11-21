@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import "./pages.css";
 
-const Colours = () => {
+const ColoursPage = () => {
     const [cats, setCats] = useState([]);
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchCats = async () => {
@@ -11,29 +13,29 @@ const Colours = () => {
                 const data = await response.json();
                 setCats(data);
             } catch (error) {
-                console.error('Error fetching cats:', error);
+                console.error('Error fetching colors:', error);
             }
         };
 
         fetchCats();
     }, []);
 
+    const handleColorClick = (color) => {
+        navigate(`/cats/color/${color}`); // Navigate to the filtered list by color
+    };
+
     return (
         <div>
+            <h2>Colors</h2>
             <ul>
-            {cats.map(cat => (
-                    <li key={cat.id}>
-                        {/* <strong>Breed:</strong> {cat.breed} <br /> */}
-                         <strong>Color:</strong> {cat.color} <br />
-                        {/* <strong>Personality:</strong> {cat.personality} <br />
-                        <strong>Size:</strong> {cat.size} <br />
-                        <strong>Facts:</strong> {cat.breed_facts} <br /> */} 
+                {cats.map((cat, index) => (
+                    <li key={index} onClick={() => handleColorClick(cat.color)}>
+                        {cat.color}
                     </li>
                 ))}
-              
             </ul>
         </div>
     );
 };
 
-export default Colours;
+export default ColoursPage;

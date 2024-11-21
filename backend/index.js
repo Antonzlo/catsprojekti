@@ -26,9 +26,14 @@ connection.connect((err) => {
 });
 
 app.get('/cats', (req, res) => {
-  const query = 'SELECT DISTINCT * FROM cats';
+  const { color } = req.query; 
+  let query = 'SELECT DISTINCT * FROM cats';  
 
-  connection.query(query, (err, results) => {
+  if (color) {
+    query = `SELECT * FROM cats WHERE color = ?`; 
+  }
+
+  connection.query(query, [color], (err, results) => {
     if (err) {
       console.error('error', err);
       res.status(500).send('server error');
@@ -38,7 +43,6 @@ app.get('/cats', (req, res) => {
     res.json(results);
   });
 });
-
 app.get('/colours', (req, res) => {
     const query = 'SELECT DISTINCT color FROM cats';
   

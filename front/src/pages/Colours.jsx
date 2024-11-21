@@ -3,7 +3,7 @@ import React from 'react';
 import Header from "../Header"
 import Colours from '../ColorsPage';
 
-const Home = () => {
+const Color = () => {
     return (
                 <div>
                     <Header />
@@ -12,4 +12,4 @@ const Home = () => {
             );
   };
   
-  export default Home;
+  export default Color;
