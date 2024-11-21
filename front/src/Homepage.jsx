@@ -17,7 +17,7 @@ const HomePage = () => {
             <section className="categories-section">
                 <div className="category">
                     <h3>All Cats</h3>
-                    <img className='photo' src="/public/images/templates.png" alt="aaa" />
+                    <img className='photo' src="/public/images/catphoto.jpg" alt="aaa" />
                     <Link to="/cats" className='links'>Read more</Link>
                     </div>
                 <div className="category">
