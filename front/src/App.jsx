@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
-import Cats from './pages/cats';
+import Cats from './pages/Cats';
 import Size from './pages/Size';
 import Colours from './pages/Colours';
 import Character from './pages/Character';
