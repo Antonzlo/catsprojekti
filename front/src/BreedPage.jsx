@@ -31,21 +31,24 @@ const BreedPage = () => {
     }
 
     return (
-        <div>
-            <h2>{cat.breed} Cat</h2>
-            <img className='breed-image' src={`/images/cats/${cat.photo}`} alt={cat.breed} />
+        <>
+                        <h2>{cat.breed} Cat</h2>
+        <div className="breed-page-container">
 
+            <img className="breed-image" src={`/images/cats/${cat.photo}`} alt={cat.breed} />
             <div className="cat-details">
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sollicitudin eget ligula vel facilisis. Duis placerat massa mattis nulla laoreet hendrerit. Curabitur sed sodales purus, nec bibendum dolor. Donec porta velit sapien, vitae ullamcorper mi eleifend eget. Curabitur consectetur turpis orci, vitae tempor enim euismod nec. Phasellus ac massa vel enim efficitur blandit eu varius risus. Integer leo felis, venenatis nec lacinia eget, cursus at odio. Pellentesque euismod, ligula a maximus mattis, dolor est lobortis leo, non dapibus ante odio id odio. Nam diam lacus, congue id orci sed, fringilla sollicitudin ante. Quisque sed finibus ipsum, at elementum urna.</p>
                 <strong>Color:</strong> {cat.color} <br />
                 <strong>Personality:</strong> {cat.personality} <br />
                 <strong>Size:</strong> {cat.size} <br />
                 <strong>Facts:</strong> {cat.breed_facts} <br />
             </div>
-
-            {/* Pass the breed to the Comments component */}
-            <Comments breed={breed} />
+            
         </div>
+            <Comments breed={breed} />
+        </>
     );
+    
 };
 
 export default BreedPage;
