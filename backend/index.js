@@ -3,6 +3,8 @@ const path = require('path');
 const app = express();
 const cors = require('cors');
 const mysql = require('mysql2');
+const fs = require('fs');
+
 
 const dbConfig = require('./dbconfig.json');
 const { port, host } = require('./config.json');
@@ -89,30 +91,67 @@ app.get('/colours', (req, res) => {
         res.json(results);
     });
 });
+const commentsFilePath = path.join(__dirname, 'comments.json');
 
-// const API_KEY = 'live_k8H3j6427nbvjiT295mUMnPf3eBTZbtG1pKasWF7Hj3453IKN0qab0Osf9HGwAMO '; 
 
-// const fetchAndSaveCatBreeds = async () => {
-//   try {
-//       const response = await fetch('https://api.thecatapi.com/v1/breeds', {
-//           headers: { 'x-api-key': API_KEY }
-//       });
-//       const breeds = await response.json();
+app.delete('/comments/:id', (req, res) => {
+  const { id } = req.params;
 
-//       const breedImages = breeds.map(breed => ({
-//           breed: breed.name,
-//           image: breed.image?.url || 'https://via.placeholder.com/150'
-//       }));
+  fs.readFile(commentsFilePath, 'utf-8', (err, data) => {
+    if (err) {
+      console.error('Error reading comments:', err);
+      return res.status(500).send('Error reading comments');
+    }
 
-//       console.log('Породы и фотографии:', breedImages);
+    let comments = JSON.parse(data || '[]');
+    comments = comments.filter(comment => comment.id !== parseInt(id));
 
-    
-//   } catch (error) {
-//       console.error('Ошибка при загрузке данных:', error);
-//   }
-// };
+    fs.writeFile(commentsFilePath, JSON.stringify(comments, null, 2), (err) => {
+      if (err) {
+        console.error('Error deleting comment:', err);
+        return res.status(500).send('Error deleting comment');
+      }
+      res.status(200).send('Comment deleted');
+    });
+  });
+});
 
-// fetchAndSaveCatBreeds();
+app.get('/comments/:breed', (req, res) => {
+  const { breed } = req.params;
+  fs.readFile(commentsFilePath, 'utf-8', (err, data) => {
+      if (err) {
+          console.error('Error reading comments:', err);
+          return res.status(500).send('Error reading comments');
+      }
+      const comments = JSON.parse(data || '[]');
+      const breedComments = comments.filter(comment => comment.breed === breed);
+      res.json(breedComments);
+  });
+});
+
+app.post('/comments/:breed', (req, res) => {
+  const { breed } = req.params;
+  const newComment = { ...req.body, breed }; 
+
+  fs.readFile(commentsFilePath, 'utf-8', (err, data) => {
+      if (err) {
+          console.error('Error reading comments:', err);
+          return res.status(500).send('Error reading comments');
+      }
+
+      const comments = JSON.parse(data || '[]');
+      comments.push(newComment);
+
+      fs.writeFile(commentsFilePath, JSON.stringify(comments, null, 2), (err) => {
+          if (err) {
+              console.error('Error saving comment:', err);
+              return res.status(500).send('Error saving comment');
+          }
+          res.status(201).json(newComment);
+      });
+  });
+});
+
 
 app.listen(port, host, () => {
   console.log(`cats projekti toimii ${host}:${port}`);
