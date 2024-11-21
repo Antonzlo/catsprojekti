@@ -24,7 +24,7 @@ connection.connect((err) => {
 });
 
 app.get('/cats', (req, res) => {
-  const query = 'SELECT * FROM cats';
+  const query = 'SELECT DISTINCT * FROM cats';
 
   connection.query(query, (err, results) => {
     if (err) {
@@ -75,6 +75,44 @@ app.get('/colours', (req, res) => {
     });
   });
 
+  app.get('/cats/:breed', (req, res) => {
+    const { breed } = req.params;
+    const query = 'SELECT * FROM cats WHERE breed = ?';
+
+    connection.query(query, [breed], (err, results) => {
+        if (err) {
+            console.error('Query error:', err);
+            res.status(500).send('Server error');
+            return;
+        }
+
+        res.json(results);
+    });
+});
+
+// const API_KEY = 'live_k8H3j6427nbvjiT295mUMnPf3eBTZbtG1pKasWF7Hj3453IKN0qab0Osf9HGwAMO '; 
+
+// const fetchAndSaveCatBreeds = async () => {
+//   try {
+//       const response = await fetch('https://api.thecatapi.com/v1/breeds', {
+//           headers: { 'x-api-key': API_KEY }
+//       });
+//       const breeds = await response.json();
+
+//       const breedImages = breeds.map(breed => ({
+//           breed: breed.name,
+//           image: breed.image?.url || 'https://via.placeholder.com/150'
+//       }));
+
+//       console.log('Породы и фотографии:', breedImages);
+
+    
+//   } catch (error) {
+//       console.error('Ошибка при загрузке данных:', error);
+//   }
+// };
+
+// fetchAndSaveCatBreeds();
 
 app.listen(port, host, () => {
   console.log(`cats projekti toimii ${host}:${port}`);

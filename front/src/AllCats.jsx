@@ -18,15 +18,23 @@ const AllCats = () => {
         fetchCats();
     }, []);
 
+    const handleReadMore = (breed) => {
+        window.location.href = `/cats/${breed}`; 
+    };
+
     return (
         <div>
             <h2>All Cats</h2>
             <div className='allcatsdiv'>
                 {cats.map(cat => (
                     <div key={cat.id} className="cat-item">
-                        <button className="breed-button">{cat.breed}</button> <br />
-                        <div className="cat-image">Pics</div>
-                        <button className="read-more">Read more</button>
+                        <p className="breed-button">{cat.breed}</p> <br />
+                        <img className='cat-image' src={`/images/cats/${cat.photo}`} alt={cat.breed} />
+                        <button 
+                            className="read-more" 
+                            onClick={() => handleReadMore(cat.breed)}>
+                            Read more
+                        </button>
                     </div>
                 ))}
             </div>
