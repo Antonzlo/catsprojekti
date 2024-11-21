@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import "./pages.css";
 
 const BreedPage = () => {
     const { breed } = useParams(); 
@@ -31,6 +32,8 @@ const BreedPage = () => {
     return (
         <div>
             <h2>{cat.breed} Cat</h2>
+            <img className='breed-image' src={`/images/cats/${cat.photo}`} alt={cat.breed} />
+
             <div className="cat-details">
                 <strong>Breed:</strong> {cat.breed} <br />
                 <strong>Color:</strong> {cat.color} <br />
