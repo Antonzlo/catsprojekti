@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import Comments from './comments';  // Ensure Comments component is correctly imported
 import "./pages.css";
 
 const BreedPage = () => {
@@ -35,12 +36,14 @@ const BreedPage = () => {
             <img className='breed-image' src={`/images/cats/${cat.photo}`} alt={cat.breed} />
 
             <div className="cat-details">
-                <strong>Breed:</strong> {cat.breed} <br />
                 <strong>Color:</strong> {cat.color} <br />
                 <strong>Personality:</strong> {cat.personality} <br />
                 <strong>Size:</strong> {cat.size} <br />
                 <strong>Facts:</strong> {cat.breed_facts} <br />
             </div>
+
+            {/* Pass the breed to the Comments component */}
+            <Comments breed={breed} />
         </div>
     );
 };
