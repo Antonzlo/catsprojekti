@@ -6,7 +6,6 @@ import Size from './pages/Size';
 import Color from './pages/Colours'
 import Character from './pages/Character';
 import CatBreed from './pages/Breed';
-import './App.css';
 
 const App = () => {
   return (

@@ -27,7 +27,7 @@ const ColoursPage = () => {
     return (
         <div>
             <h2>Colors</h2>
-            <ul>
+            <ul className="Colours-Page">
                 {cats.map((cat, index) => (
                     <li key={index} onClick={() => handleColorClick(cat.color)}>
                         {cat.color}
