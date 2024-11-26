@@ -28,15 +28,17 @@ connection.connect((err) => {
 app.get('/cats', (req, res) => {
   const { color } = req.query; 
   let query = 'SELECT DISTINCT * FROM cats';  
+  let params = [];
 
   if (color) {
-    query = `SELECT * FROM cats WHERE color = ?`; 
+    query = `SELECT * FROM cats WHERE FIND_IN_SET(?, color)`; 
+    params = [color];
   }
 
-  connection.query(query, [color], (err, results) => {
+  connection.query(query, params, (err, results) => {
     if (err) {
-      console.error('error', err);
-      res.status(500).send('server error');
+      console.error('Error executing query:', err);
+      res.status(500).send('Server error');
       return;
     }
 

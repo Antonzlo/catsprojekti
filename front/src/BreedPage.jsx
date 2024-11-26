@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import Comments from './comments';  // Ensure Comments component is correctly imported
+import Comments from './comments';  
 import "./pages.css";
 
 const BreedPage = () => {
