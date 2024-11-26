@@ -24,15 +24,20 @@ connection.connect((err) => {
     return;
   }
 });
-
 app.get('/cats', (req, res) => {
-  const { color } = req.query; 
-  let query = 'SELECT DISTINCT * FROM cats';  
+  const { color, size, character } = req.query; 
+  let query = 'SELECT DISTINCT * FROM cats'; 
   let params = [];
 
   if (color) {
     query = `SELECT * FROM cats WHERE FIND_IN_SET(?, color)`; 
     params = [color];
+  } else if (size) {
+    query = `SELECT * FROM cats WHERE FIND_IN_SET(?, size)`; 
+    params = [size];
+  } else if (character) {
+    query = `SELECT * FROM cats WHERE FIND_IN_SET(?, personality)`; 
+    params = [character];
   }
 
   connection.query(query, params, (err, results) => {
@@ -45,6 +50,7 @@ app.get('/cats', (req, res) => {
     res.json(results);
   });
 });
+
 app.get('/colours', (req, res) => {
     const query = 'SELECT DISTINCT color FROM cats';
   
@@ -99,28 +105,6 @@ app.get('/colours', (req, res) => {
 });
 const commentsFilePath = path.join(__dirname, 'comments.json');
 
-
-app.delete('/comments/:id', (req, res) => {
-  const { id } = req.params;
-
-  fs.readFile(commentsFilePath, 'utf-8', (err, data) => {
-    if (err) {
-      console.error('Error reading comments:', err);
-      return res.status(500).send('Error reading comments');
-    }
-
-    let comments = JSON.parse(data || '[]');
-    comments = comments.filter(comment => comment.id !== parseInt(id));
-
-    fs.writeFile(commentsFilePath, JSON.stringify(comments, null, 2), (err) => {
-      if (err) {
-        console.error('Error deleting comment:', err);
-        return res.status(500).send('Error deleting comment');
-      }
-      res.status(200).send('Comment deleted');
-    });
-  });
-});
 
 app.get('/comments/:breed', (req, res) => {
   const { breed } = req.params;
