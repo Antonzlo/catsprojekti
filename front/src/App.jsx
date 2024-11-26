@@ -6,10 +6,12 @@ import Size from './pages/Size';
 import Color from './pages/Colours'
 import Character from './pages/Character';
 import CatBreed from './pages/Breed';
+import Header from './Header';
 
 const App = () => {
   return (
     <BrowserRouter>
+    <Header/>
       <Routes>
         <Route index element={<Home />} />
         <Route path="cats" element={<Cats />} />
