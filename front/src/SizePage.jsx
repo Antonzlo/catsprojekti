@@ -1,34 +1,45 @@
 import React, { useEffect, useState } from 'react';
-//bebebe
+import { useNavigate } from 'react-router-dom';
 import "./pages.css";
 
-const SizePage = () => {
-    const [cats, setCats] = useState([]);
+const SizesPage = () => {
+    const [sizes, setSizes] = useState([]);
+    const navigate = useNavigate();
 
     useEffect(() => {
-        const fetchCats = async () => {
+        const fetchSizes = async () => {
             try {
                 const response = await fetch('http://localhost:3005/size');
                 const data = await response.json();
-                setCats(data);
+
+                const uniqueSizes = Array.from(
+                    new Set(
+                        data
+                            .flatMap((item) => item.size.split(',')) 
+                            .map((size) => size.trim()) 
+                    )
+                ).sort();
+
+                setSizes(uniqueSizes);
             } catch (error) {
-                console.error('Error fetching cats:', error);
+                console.error('Error fetching sizes:', error);
             }
         };
 
-        fetchCats();
+        fetchSizes();
     }, []);
+
+    const handleSizeClick = (size) => {
+        navigate(`/cats/size/${size}`); 
+    };
 
     return (
         <div>
+            <h2>Sizes</h2>
             <ul>
-            {cats.map(cat => (
-                    <li key={cat.id}>
-                        {/* <strong>Breed:</strong> {cat.breed} <br /> */}
-                         {/* <strong>Color:</strong> {cat.color} <br /> */}
-                        {/* <strong>Personality:</strong> {cat.personality} <br />*/}
-                        <strong>Size:</strong> {cat.size} <br />
-                       {/* <strong>Facts:</strong> {cat.breed_facts} <br /> */} 
+                {sizes.map((size, index) => (
+                    <li key={index} onClick={() => handleSizeClick(size)}>
+                        {size}
                     </li>
                 ))}
             </ul>
@@ -36,4 +47,4 @@ const SizePage = () => {
     );
 };
 
-export default SizePage;
+export default SizesPage;

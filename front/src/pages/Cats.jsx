@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import AllCats from "../AllCats";
-import Header from '../Header';
 
 const Cats = () => {
   const { color } = useParams();
@@ -29,7 +28,6 @@ const Cats = () => {
 
   return (
     <div>
-      <Header />
       <AllCats cats={cats} /> 
     </div>
   );

@@ -32,7 +32,7 @@ const BreedPage = () => {
 
     return (
         <>
-                        <h2>{cat.breed} Cat</h2>
+        <h2 className='h2breed'>{cat.breed} Cat</h2>
         <div className="breed-page-container">
 
             <img className="breed-image" src={`/images/cats/${cat.photo}`} alt={cat.breed} />

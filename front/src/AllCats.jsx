@@ -1,17 +1,23 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import "./pages.css";
 
 const AllCats = () => {
-    const { color } = useParams();  // Get the color parameter from the URL if available
+    const { color, size, character } = useParams(); // Получаем параметры из URL
     const [cats, setCats] = useState([]);
-    
+    const navigate = useNavigate();
+
     useEffect(() => {
         const fetchCats = async () => {
-            let url = 'http://localhost:3005/cats';  // Default URL to get all cats
+            let url = 'http://localhost:3005/cats';
 
             if (color) {
-                url = `http://localhost:3005/cats?color=${color}`;  // Fetch filtered cats if color is provided
+                url += `?color=${color}`;
+            } else if (size) {
+                url += `?size=${size}`;
+            } else if (character) {
+                url += `?character=${character}`;
             }
 
             try {
@@ -24,21 +30,37 @@ const AllCats = () => {
         };
 
         fetchCats();
-    }, [color]);  // Run the effect when the color changes (dynamic routing)
+    }, [color, size, character]);
 
     const handleReadMore = (breed) => {
-        window.location.href = `/cats/${breed}`;  // Navigate to the breed's detail page
+        navigate(`/cats/${breed}`);
+    };
+
+    const getTitle = () => {
+        if (color) {
+            return `Cats of color: ${color}`;
+        } else if (size) {
+            return `Cats of size: ${size}`;
+        } else if (character) {
+            return `Cats with character: ${character}`;
+        } else {
+            return 'All Cats';
+        }
     };
 
     return (
         <div>
-            <h2>{color ? `Cats of color: ${color}` : 'All Cats'}</h2> {/* Display dynamic title based on color */}
+            <h2>{getTitle()}</h2>
             <div className="allcatsdiv">
                 {cats.length > 0 ? (
                     cats.map((cat) => (
                         <div key={cat.id} className="cat-item">
                             <p className="breed-button">{cat.breed}</p> <br />
-                            <img className="cat-image" src={`/images/cats/${cat.photo}`} alt={cat.breed} />
+                            <img
+                                className="cat-image"
+                                src={`/images/cats/${cat.photo}`}
+                                alt={cat.breed}
+                            />
                             <button
                                 className="read-more"
                                 onClick={() => handleReadMore(cat.breed)}>
@@ -47,7 +69,7 @@ const AllCats = () => {
                         </div>
                     ))
                 ) : (
-                    <p>No cats found for this color.</p> 
+                    <p>No cats found for the selected filter.</p>
                 )}
             </div>
         </div>

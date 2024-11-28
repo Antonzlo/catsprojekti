@@ -58,12 +58,7 @@ const Comments = ({ breed }) => {
             <p>
               <strong>{comment.username}:</strong> {comment.text}
             </p>
-            <button
-              className="deleteButton"
-              onClick={() => handleDeleteComment(comment.id)}
-            >
-              Delete
-            </button>
+            
           </div>
         ))}
         {comments.length === 0 && <p>No comments yet.</p>}
