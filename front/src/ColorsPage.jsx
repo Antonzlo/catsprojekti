@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import "./pages.css";
 
@@ -34,23 +34,26 @@ const ColoursPage = () => {
     };
 
     return (
-        <div>
-            <h2>Colors</h2>
-<<<<<<< HEAD
-            <ul className="Colours-Page">
-                {cats.map((cat, index) => (
-                    <li key={index} onClick={() => handleColorClick(cat.color)}>
-                        {cat.color}
-=======
-            <ul>
-                {colors.map((color, index) => (
-                    <li key={index} onClick={() => handleColorClick(color)}>
-                        {color}
->>>>>>> f4cc4904e64e57f3ecaae73b0b8cb8f11d631aca
-                    </li>
-                ))}
-            </ul>
-        </div>
+        <>
+        <h2>Colors</h2>
+        <div className="colordiv">
+        <ul>
+            {colors.length > 0 ? (
+                colors.map((color, index) => (
+                    <div key={index} className="color-item">
+                        <li onClick={() => handleColorClick(color)}>
+                            {color}
+                        </li>
+                    </div>
+                ))
+            ) : (
+                <p>No colors available.</p>
+            )}
+        </ul>
+        <h1>kissat on kivoja</h1>
+    </div>
+    </>
+    
     );
 };
 

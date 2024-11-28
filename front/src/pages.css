@@ -40,7 +40,6 @@
 .read-more {
     margin-top: 10px;
     padding: 5px 10px;
-    background-color: var(--secondary);
     color: var(--text);
     border: none;
     border-radius: 5px;
@@ -81,7 +80,6 @@ h2 {
 .cat-details {
     font-size: 17px;
     line-height: 2.0;
-    color: #333;
     max-width: 700px; 
     margin-left:20px ;
 }
@@ -89,7 +87,18 @@ h2 {
 .cat-details strong {
     color: #ab5959;
 }
-/* 
-.colours-page{
 
-} */
+.colordiv ul{
+    display: flex; /* Use flexbox to lay items side by side */
+    gap: 20px; /* Controls the space between color items */
+    padding: 20px;
+    cursor: pointer;
+    color: var(--text);
+    flex-wrap: wrap; /* Allows wrapping if there are too many items in a row */
+}
+
+.color-item {
+    width: 50px;
+    height: 50px;
+    list-style-type: none; /* Removes bullet points from the list */
+}

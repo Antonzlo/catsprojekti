@@ -100,7 +100,7 @@
 }
 
 .links {
-    color: #333333; /* Sets a specific color */
+    color: var(--text); /* Sets a specific color */
   text-decoration: none;
   padding-top: 10px;
 }
