@@ -34,7 +34,6 @@ const ColoursPage = () => {
     };
 
     return (
-<<<<<<< HEAD
         <>
         <h2>Colors</h2>
         <div className="colordiv">
@@ -55,19 +54,6 @@ const ColoursPage = () => {
     </div>
     </>
     
-=======
-        <div>
-            <h2>Colors</h2>
-            <ul className="Colours-Page">
-
-                {colors.map((color, index) => (
-                    <li key={index} onClick={() => handleColorClick(color)}>
-                        {color}
-                    </li>
-                ))}
-            </ul>
-        </div>
->>>>>>> fbc2d5016a4ef2c38c086f2dd1d5e622e5104a3b
     );
 };
 
