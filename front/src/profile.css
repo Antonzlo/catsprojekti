@@ -1,0 +1,109 @@
+.profile-page {
+    background-color: var(--background);
+    color: var(--text);
+    padding: 40px 20px;
+    min-height: 100vh;
+    font-family: 'Arial', sans-serif;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .profile-page .profile-container {
+    background-color: var(--secondary);
+    color: var(--text);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 700px;
+    margin: 0 auto;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .profile-page h1 {
+    color: var(--text);
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 20px;
+  }
+  
+  .profile-page h2 {
+    color: var(--text);
+    margin-top: 30px;
+    font-size: 1.5rem;
+    border-bottom: 2px solid var(--primary);
+    padding-bottom: 5px;
+  }
+  
+  .profile-page p {
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+  }
+  
+  .profile-page strong {
+    font-weight: 600;
+  }
+  
+  .profile-page ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .profile-page li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--primary);
+    padding: 10px 15px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease-in-out;
+  }
+  
+  .profile-page li a {
+    color: var(--text);
+    font-weight: 600;
+    text-decoration: none;
+  }
+  
+  .profile-page li a:hover {
+    text-decoration: underline;
+  }
+  
+  .profile-page li button {
+    background-color: var(--primary);
+    color: var(--text);
+    border: none;
+    padding: 6px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+  }
+  
+  .profile-page li button:hover {
+    background-color: var(--accent);
+  }
+  
+  .profile-page .no-favorites {
+    text-align: center;
+    color: var(--text);
+    font-size: 1.2rem;
+  }
+  
+  .profile-page .logout-button {
+    background-color: var(--primary);
+    color: var(--text);
+    border: none;
+    padding: 12px 25px;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    display: block;
+    margin: 30px auto 0;
+    transition: background-color 0.3s ease-in-out;
+  }
+  
+  .profile-page .logout-button:hover {
+    background-color: var(--accent);
+  }
+  

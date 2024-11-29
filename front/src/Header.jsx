@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+
 import './Header.css';
 
 const Header = () => {
@@ -24,9 +26,10 @@ const Header = () => {
                     <input type="text" placeholder="Search..." className="search-input" />
                 </div>
                 <div className="nav-right">
-                    <a href="http://localhost:5173/cats">Cats</a>
-                    <a href="Login">Login</a>
-                    <a href="Register">Register</a>
+                <Link to="/cats">Cats</Link>
+                <Link to="/login">Login</Link>
+                <Link to="/register">Register</Link>
+                <Link to="/profile">Profile</Link>
                     <img
                         id="themeToggle"
                         src={theme === 'light' ? '/images/moon.png' : '/images/sun.png'}

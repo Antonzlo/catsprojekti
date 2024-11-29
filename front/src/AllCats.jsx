@@ -53,8 +53,8 @@ const AllCats = () => {
             <h2>{getTitle()}</h2>
             <div className="allcatsdiv">
                 {cats.length > 0 ? (
-                    cats.map((cat) => (
-                        <div key={cat.id} className="cat-item">
+                    cats.map((cat, index) => (
+                        <div key={cat.id || index} className="cat-item">
                             <p className="breed-button">{cat.breed}</p> <br />
                             <img
                                 className="cat-image"
