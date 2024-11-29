@@ -1,5 +1,6 @@
 node_modules
 dbconfig.json
+dbconfig2.json
 test.js
 index.html
 app.js

@@ -1,12 +1,13 @@
 const express = require('express');
+const session = require('express-session');
 const path = require('path');
 const app = express();
 const cors = require('cors');
 const mysql = require('mysql2');
 const fs = require('fs');
 
-
 const dbConfig = require('./dbconfig.json');
+const db = require('./dbconfig2.json');
 const { port, host } = require('./config.json');
 
 app.use(cors());
@@ -17,6 +18,15 @@ app.use('/public', express.static(path.join(__dirname, 'public')));
 app.set('views', path.join(__dirname, 'templates'));
 
 const connection = mysql.createConnection(dbConfig);
+const connection2 = mysql.createConnection(db);
+
+
+connection2.connect((err) => {
+  if (err) {
+    console.error('error', err);
+    return;
+  }
+});
 
 connection.connect((err) => {
   if (err) {
@@ -141,6 +151,128 @@ app.post('/comments/:breed', (req, res) => {
       });
   });
 });
+
+//users
+
+connection2.connect((err) => {
+  if (err) {
+    console.error('Could not connect to MySQL:', err);
+    return;
+  }
+  console.log('Connected to MySQL database');
+});
+
+
+app.use(session({
+  secret: 'yourSecretKey',
+  resave: false,
+  saveUninitialized: false,
+  cookie: {
+    secure: false, // Ei käytetä HTTPS:ää kehityksessä
+  },
+}));
+
+function hashPassword(password) {
+  return password.split('').reverse().join('');
+}
+
+app.use(express.static(__dirname));
+
+app.post('/register', (req, res) => {
+  const { username, password } = req.body;
+
+  if (!username || !password) {
+    return res.status(400).send('Username and password are required.');
+  }
+
+  connection2.query('SELECT * FROM users WHERE username = ?', [username], (err, results) => {
+    if (err) {
+      return res.status(500).send('Error checking username.');
+    }
+
+    if (results.length > 0) {
+      return res.status(400).send('Username already exists.');
+    }
+
+    const hashedPassword = hashPassword(password);
+
+    connection2.query(
+      'INSERT INTO users (username, password) VALUES (?, ?)',
+      [username, hashedPassword],
+      (err, result) => {
+        if (err) {
+          return res.status(500).send('Error registering user.');
+        }
+        res.status(201).send('Registration successful.');
+      }
+    );
+  });
+});
+app.post('/login', (req, res) => {
+  const { username, password } = req.body;
+
+  if (!username || !password) {
+    return res.status(400).send({ error: 'Username and password are required.' });
+  }
+
+  const hashedPassword = hashPassword(password);
+
+  connection2.query(
+    'SELECT * FROM users WHERE username = ? AND password = ?',
+    [username, hashedPassword],
+    (err, results) => {
+      if (err) {
+        return res.status(500).send({ error: 'Error logging in.' });
+      }
+
+      if (results.length === 0) {
+        return res.status(401).send({ error: 'Invalid username or password.' });
+      }
+
+      req.session.user = { username };
+
+      res.json({
+        message: 'Login successful.',
+        user: { username }
+      });
+    }
+  );
+});
+
+
+
+app.post('/logout', (req, res) => {
+  if (req.session.user) {
+    req.session.destroy((err) => {
+      if (err) {
+        return res.status(500).send('Could not log out. Try again.');
+      }
+      res.send('Logout successful.');
+    });
+  } else {
+    res.status(400).send('No user logged in.');
+  }
+});
+app.get('/profile', (req, res) => {
+  if (!req.session.user) {
+    return res.status(401).send('Please log in to view this page.');
+  }
+
+  const username = req.session.user.username;
+  connection2.query('SELECT * FROM users WHERE username = ?', [username], (err, results) => {
+    if (err) {
+      return res.status(500).send('Error fetching user profile.');
+    }
+
+    if (results.length === 0) {
+      return res.status(404).send('User not found.');
+    }
+
+    const userProfile = results[0]; 
+    res.json(userProfile); 
+  });
+});
+
 
 
 app.listen(port, host, () => {
