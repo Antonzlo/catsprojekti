@@ -40,6 +40,7 @@ const Character = () => {
                 {personalities.map((personality, index) => (
                     <li key={index} onClick={() => handlePersonalityClick(personality)}>
                         {personality} 
+                        
                     </li>
                 ))}
             </ul>

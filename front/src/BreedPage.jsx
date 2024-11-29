@@ -62,11 +62,11 @@ const BreedPage = () => {
                 <strong>Personality:</strong> {cat.personality} <br />
                 <strong>Size:</strong> {cat.size} <br />
                 <strong>Facts:</strong> {cat.breed_facts} <br />
-            </div>
-        </div>
-        <button onClick={handleToggleFavorite}>
+        <button className='favorites' onClick={handleToggleFavorite}>
             {isFavorite ? 'Remove from Favorites' : 'Add to Favorites'}
         </button>
+            </div>
+        </div>
         <Comments breed={breed} />
         </>
     );

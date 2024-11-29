@@ -1,11 +1,12 @@
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
-import "./register.css"
+import './auth.css'; // Общий CSS
+
 const Register = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
 
   const handleRegister = async (e) => {
     e.preventDefault();
@@ -19,14 +20,14 @@ const Register = () => {
 
     if (!response.ok) {
       const result = await response.text();
-      setError(result);  
+      setError(result);
     } else {
-      navigate('/');  
+      navigate('/');
     }
   };
 
   return (
-    <div className=''>
+    <div className="auth-container">
       <h1>Register</h1>
       <form onSubmit={handleRegister}>
         <input
@@ -36,8 +37,7 @@ const Register = () => {
           onChange={(e) => setUsername(e.target.value)}
           required
         />
-        {error && error.includes('Username') && <p style={{ color: 'red' }}>{error}</p>}
-
+        {error && error.includes('Username') && <p>{error}</p>}
         <input
           type="password"
           placeholder="Password"
@@ -45,8 +45,7 @@ const Register = () => {
           onChange={(e) => setPassword(e.target.value)}
           required
         />
-        {error && error.includes('Password') && <p style={{ color: 'red' }}>{error}</p>}
-
+        {error && error.includes('Password') && <p>{error}</p>}
         <button type="submit">Register</button>
       </form>
     </div>
