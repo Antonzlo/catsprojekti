@@ -1,41 +1,25 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import "./pages.css";
 
 const Character = () => {
-    const [personalities, setPersonalities] = useState([]);
-    const navigate = useNavigate();
+    const [cats, setCats] = useState([]);
 
     useEffect(() => {
-        const fetchPersonalities = async () => {
+        const fetchCats = async () => {
             try {
-                const response = await fetch('http://localhost:3005/character'); 
+                const response = await fetch('http://localhost:3005/character');
                 const data = await response.json();
-
-                const uniquePersonalities = Array.from(
-                    new Set(
-                        data
-                            .flatMap((item) => item.personality.split(',')) 
-                            .map((personality) => personality.trim()) 
-                    )
-                ).sort(); 
-
-                setPersonalities(uniquePersonalities);
+                setCats(data);
             } catch (error) {
-                console.error('Error fetching personalities:', error);
+                console.error('Error fetching cats:', error);
             }
         };
 
-        fetchPersonalities();
+        fetchCats();
     }, []);
-
-    const handlePersonalityClick = (personality) => {
-        navigate(`/cats/character/${personality}`); 
-    };
 
     return (
         <div>
-            <h2>Personalities</h2>
             <ul>
                 {personalities.map((personality, index) => (
                     <li key={index} onClick={() => handlePersonalityClick(personality)}>
@@ -43,11 +27,10 @@ const Character = () => {
                         
                     </li>
                 ))}
+              
             </ul>
         </div>
     );
 };
-
-
-
+ 
 export default Character;
