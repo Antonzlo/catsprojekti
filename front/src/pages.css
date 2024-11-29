@@ -42,6 +42,7 @@
     padding: 5px 10px;
     color: var(--text);
     border: none;
+    background-color: var(--secondary);
     border-radius: 5px;
     cursor: pointer;
     font-size: 20px;
@@ -87,18 +88,65 @@ h2 {
 .cat-details strong {
     color: #ab5959;
 }
+/* Apply styles specific to the ColoursPage component */
 
-.colordiv ul{
-    display: flex; /* Use flexbox to lay items side by side */
-    gap: 20px; /* Controls the space between color items */
-    padding: 20px;
-    cursor: pointer;
-    color: var(--text);
-    flex-wrap: wrap; /* Allows wrapping if there are too many items in a row */
+
+.colours-page h2 {
+    font-size: 36px;
+    color: var(--primary);
+    margin-bottom: 40px;
+    letter-spacing: 1.5px;
+}
+
+.colordiv {
+    background-color: var(--secondary); /* Slightly transparent background */
+    border-radius: 25px;
+    padding: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+    overflow: hidden;
+}
+
+.colordiv ul {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* Grid layout with 4 items per row */
+    gap: 25px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
 }
 
 .color-item {
-    width: 50px;
-    height: 50px;
-    list-style-type: none; /* Removes bullet points from the list */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 150px;
+    height: 150px;
+    border-radius: 12px;
+    font-size: 14px;
+    font-weight: 600;
+    color: white;
+    background-color: blanchedalmond;
+    cursor: pointer;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow effect */
+    transition: all 0.3s ease;
+    text-transform: capitalize;
+    padding: 10px;
+    border: 2px solid transparent;
+}
+
+.color-item:hover {
+    transform: scale(1.05); /* Slight scale effect on hover */
+    border-color: var(--primary); /* Highlight border on hover */
+}
+
+.color-item li {
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+.character-page{
+    
 }
