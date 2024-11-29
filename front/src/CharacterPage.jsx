@@ -19,13 +19,13 @@ const Character = () => {
     }, []);
 
     return (
-        <div>
+        <div className='character-page'>
             <ul>
             {cats.map(cat => (
                     <li key={cat.id}>
                         {/* <strong>Breed:</strong> {cat.breed} <br /> */}
                          {/* <strong>Color:</strong> {cat.color} <br /> */}
-                         <strong>Personality:</strong> {cat.personality} 
+                          {cat.personality} 
                         {/*<strong>Size:</strong> {cat.size} <br />
                         <strong>Facts:</strong> {cat.breed_facts} <br /> */} 
                     </li>
