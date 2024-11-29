@@ -1,3 +1,4 @@
+
 .allcatsdiv {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -206,3 +207,17 @@ h2 {
     line-height: 1.6;
     margin: 0;
 }
+
+.favorites {
+    margin-top: 10px;
+    background-color: var(--secondary);
+    border:1px var(--secondary);
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+
+  

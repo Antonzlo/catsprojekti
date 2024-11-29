@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import "./login.css";
+import './auth.css'; // Общий CSS
+
 const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -8,7 +9,6 @@ const Login = () => {
 
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem('user'));
-    
   }, [navigate]);
 
   const handleLogin = async (e) => {
@@ -17,30 +17,28 @@ const Login = () => {
     const response = await fetch('http://localhost:3005/login', {
       method: 'POST',
       headers: {
-        'Authorization': `Bearer ${localStorage.getItem('user')}`,
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify({ username, password }),
     });
 
     const contentType = response.headers.get('Content-Type');
     let data;
-    
+
     if (contentType && contentType.includes('application/json')) {
       data = await response.json();
     } else {
       const text = await response.text();
-      console.log('Response is not JSON:', text);
-      alert(text); 
+      alert(text);
       return;
     }
-    console.log(response.ok);
-    console.log(data);
+
     if (response.ok && data.user) {
-        localStorage.setItem('user', JSON.stringify(data.user));  
-        navigate('/profile');
-      } else {
-        alert('Login failed: ' + (data.message || 'Invalid credentials'));
-      }
+      localStorage.setItem('user', JSON.stringify(data.user));
+      navigate('/profile');
+    } else {
+      alert('Login failed: ' + (data.message || 'Invalid credentials'));
+    }
   };
 
   const handleLogout = () => {
@@ -51,9 +49,9 @@ const Login = () => {
   const isLoggedIn = localStorage.getItem('user');
 
   return (
-    <div>
+    <div className="auth-container">
       {isLoggedIn ? (
-        <div>
+        <div className="logged-in">
           <h1>You are already logged in. Do you want to log out?</h1>
           <button onClick={handleLogout}>Logout</button>
         </div>

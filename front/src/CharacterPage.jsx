@@ -21,13 +21,10 @@ const Character = () => {
     return (
         <div className='character-page'>
             <ul>
-            {cats.map(cat => (
-                    <li key={cat.id}>
-                        {/* <strong>Breed:</strong> {cat.breed} <br /> */}
-                         {/* <strong>Color:</strong> {cat.color} <br /> */}
-                          {cat.personality} 
-                        {/*<strong>Size:</strong> {cat.size} <br />
-                        <strong>Facts:</strong> {cat.breed_facts} <br /> */} 
+                {personalities.map((personality, index) => (
+                    <li key={index} onClick={() => handlePersonalityClick(personality)}>
+                        {personality} 
+                        
                     </li>
                 ))}
               
@@ -35,5 +32,5 @@ const Character = () => {
         </div>
     );
 };
-
+ 
 export default Character;
